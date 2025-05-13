@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
 
-const scrapeLogic = async (res) => {
+const scrapeLogic = async (res , query) => {
   const browser = await puppeteer.launch({
     args: [
       "--disable-setuid-sandbox",
@@ -24,7 +24,7 @@ const scrapeLogic = async (res) => {
 
     // Type into search box
     const searchBar = await page.waitForSelector('input[aria-label="Search"]');
-    await searchBar.type("automate beyond recorder");
+    await searchBar.type(query);
 
     // Wait and click on first result
     await page.keyboard.press('Enter');
